@@ -19,8 +19,12 @@ monitor_replication.ini
 
 Docs
 ----
-plan_diag.rst
+plan_diag.rst |rtfd|
    The meat of the plan, uses actdiag extension to Sphinx
+
+.. |rtfd| image:: https://readthedocs.org/projects/innodb-cutover/badge/
+    :target: http://innodb-cutover.readthedocs.io/
+    :alt: Documentation Status
 
 Makefile conf.py index.rst make.bat
    Sphinx boiler plate
