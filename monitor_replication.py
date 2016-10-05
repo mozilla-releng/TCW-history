@@ -72,6 +72,8 @@ def parse_args():
         parser.error("Missing credential files")
     elif options.record_data and not options.compare:
         parser.error("you can't record data without a comparison")
+    elif options.record_data and not options.process_only:
+        parser.error("you can only record while processing data")
     return options, args
 
 class StepHeader(object):
