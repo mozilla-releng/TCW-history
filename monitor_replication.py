@@ -216,45 +216,43 @@ def compare_steps(master, replica):
         diff_message_template = "%s; replica behind by %d rows"
         m = master[s]
         r = replica[s]
-        if m != r:
-            # see what changed
-            if m.step_id != r.step_id:
-                logging.error('Step %d definitions differ; master="%s"; replica="%s"',
-                        s+1, m.step_id, r.step_id)
-            elif len(m) == len(r) == 1:
-                m_rows = int(m[0])
-                r_rows = int(r[0])
-                diff = m_rows - r_rows
-                abs_diff = abs(diff)
-                datum_name = m.table_name
-                if 'select unix_timestamp()' in m.step_id:
-                    # flip sign, so value is delta between sample start,
-                    diff = -diff
-                    # but don't accumulate to total diff
-                    abs_diff = 0
-                    # and tweak message
-                    diff_message_template = "%s; replica data collected %d seconds later"
-                    # and record master time as sample collection time
-                    # for graphite
-                    posts_data.append((post_key, 'TIMESTAMP', m_rows))
-                    datum_name = 'sec_delta'
-                posts_data.append((post_key, datum_name, diff))
-                total_abs_diff += abs(diff)
-                if diff < 0:
-                    logging.error("%s; replica has %d more rows "
-                            "(%d) than master (%d)", m.step_id,
-                            -diff, r_rows, m_rows)
-                else:
-                    logging.warning(diff_message_template, m.step_id, diff)
+        if m.step_id != r.step_id:
+            logging.error('Step %d definitions differ; master="%s"; replica="%s"',
+                    s+1, m.step_id, r.step_id)
+        elif len(m) == len(r) == 1:
+            m_rows = int(m[0])
+            r_rows = int(r[0])
+            diff = m_rows - r_rows
+            abs_diff = abs(diff)
+            datum_name = m.table_name
+            if 'select unix_timestamp()' in m.step_id:
+                # flip sign, so value is delta between sample start,
+                diff = -diff
+                # but don't accumulate to total diff
+                abs_diff = 0
+                # and tweak message
+                diff_message_template = "%s; replica data collected %d seconds later"
+                # and record master time as sample collection time
+                # for graphite
+                posts_data.append((post_key, 'TIMESTAMP', m_rows))
+                datum_name = 'sec_delta'
+            posts_data.append((post_key, datum_name, diff))
+            total_abs_diff += abs(diff)
+            if diff < 0:
+                logging.error("%s; replica has %d more rows "
+                        "(%d) than master (%d)", m.step_id,
+                        -diff, r_rows, m_rows)
             else:
-                # more that one row
-                if 'show databases' in m.step_id and (len(m) == len(r)+1) and ('mysql' in m):
-                    # different permissions on r/o & r/w db's make
-                    # 'mysql' database invisible on replica
-                    pass
-                else:
-                    logging.warning("%s; master='%s'; replica='%s'",
-                            m.step_id, str(m), str(r))
+                logging.warning(diff_message_template, m.step_id, diff)
+        else:
+            # more that one row
+            if 'show databases' in m.step_id and (len(m) == len(r)+1) and ('mysql' in m):
+                # different permissions on r/o & r/w db's make
+                # 'mysql' database invisible on replica
+                pass
+            else:
+                logging.warning("%s; master='%s'; replica='%s'",
+                        m.step_id, str(m), str(r))
 
     logging.info("Total_abs_diff: %d; master='%s'; replica='%s'",
                  total_abs_diff, master, replica)
