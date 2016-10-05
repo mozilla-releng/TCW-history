@@ -43,12 +43,6 @@ GRAPHITE_PORT = 2003
 # dreaded globals
 sock = None
 
-def get_row_count(db, table):
-    q = sa.text("SELECT COUNT(*) FROM :table_name")
-    results = db.execute(q, table_name=table_name)
-    row = results.fetchone()
-    return int(row) if row else 0
-
 def parse_args():
     from optparse import OptionParser
     parser = OptionParser(usage=__doc__, version=__version__)
@@ -105,7 +99,10 @@ def build_query(config_file, config_parser):
         table_section = TABLE_SECTION_TEMPLATE % db_name
         mysql_cmds.extend(step_header.next('use %s ; ' % db_name))
         for table_name, v in config_parser.items(table_section):
-            mysql_cmds.extend(step_header.next('select count(*) from %s ;' % table_name))
+            if not v:
+                v = 'id'
+            #mysql_cmds.extend(step_header.next('select count(*) from %s ;' % table_name))
+            mysql_cmds.extend(step_header.next('select max(%s) from %s ;' % (v, table_name)))
 
     return '\n'.join(mysql_cmds)
 
@@ -121,6 +118,7 @@ def run_query(query_string, host):
         '--defaults-file=%s' % host,
         '--batch',
         '--skip-column-names',
+        '--force',
         # '--verbose',
         ]
     
