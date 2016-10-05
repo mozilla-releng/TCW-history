@@ -198,7 +198,7 @@ class StepList(object):
         return '<StepList %s, %d steps>' % (self.host, len(self))
             
 def get_post_key(host1, host2):
-    post_key = "%s2%s" % (host1, host2)
+    post_key = "%sV%s" % (host1, host2)
     post_key = post_key.replace('.ini', '')
     post_key = post_key.replace('.', '_')
     return post_key
@@ -263,7 +263,6 @@ def compare_steps(master, replica):
     return posts_data
 
 def post_to_history(data):
-    logging.error("Posting to graphite not implemented yet")
     time_of_report = data[0][-1]
     lines = []
     for data_point in data[1:]:
