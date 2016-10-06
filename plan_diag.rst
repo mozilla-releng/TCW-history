@@ -154,7 +154,9 @@ Legend:
 .. |apply_all_patches_and_reboot| replace:: Apply all needed firmware
                 and software updates. Since this includes a kernel
                 update in many cases, a reboot is required.
-.. |failover_to_innodb| replace:: Point the r/w VIP at the InnoDB r/w
+.. |failover_to_innodb| replace:: Two steps: 1) remove MyISAM db's from
+                being replication targets (effectively a backup in case
+                of rollback). 2) Point the r/w VIP at the InnoDB r/w
                 node.
 .. |cutover_ro_instance| replace:: Point the r/o VIP at the InnoDB r/o
                 node.
