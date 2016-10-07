@@ -1,3 +1,10 @@
+..
+    Color code for chart:
+        - white -- not started yet
+        - lightgreen -- done
+        - orchid -- in progress
+        - maroon -- cancelled
+
 ===================
 InnoDB Cutover Plan
 ===================
@@ -53,15 +60,19 @@ Legend:
     lane MOC {
         label = "MOC" ;
         tcw_start [label="TCW Start",
+            color=white,
             numbered=70,
             description="|tcw_start|"] ;
         tcw_pre_db [label="TCW before\nDB work",
+            color=white,
             numbered=100,
             description="|tcw_pre_db|"] ;
         tcw_post_db [label="TCW after\nDB work",
+            color=white,
             numbered=200,
             description="|tcw_post_db|"] ;
         tcw_end [label="TCW End",
+            color=white,
             numbered=210,
             description="|tcw_end|"] ;
     }
@@ -69,18 +80,23 @@ Legend:
     lane data {
         label = "Data Team" ;
         cutover_ro_instance [label="Switch R/O VIP\nto InnoDB",
+            color=lightgreen,
             numbered=40,
             description="|cutover_ro_instance|"] ;
         apply_all_patches_and_reboot [label="Update Nodes",
+            color=white,
             numbered=120,
             description="|apply_all_patches_and_reboot|"] ;
         failover_to_innodb [label="Switch R/W VIP\nto InnoDB",
+            color=white,
             numbered=130,
             description="|failover_to_innodb|"] ;
         monitor_rw_db [label="Monitor R/W Node",
+            color=white,
             numbered=140,
             description="|monitor_rw_db|"] ;
         rollback_to_myisam_for_rw [label="Rollback to MyISAM",
+            color=white,
             numbered=160,
             description="|rollback_to_myisam_for_rw|"] ; # original master
     }
@@ -88,58 +104,77 @@ Legend:
     lane releng {
         label = "RelEng" ;
         start [label="Start\nWork",
+            color=lightgreen,
             numbered=10,
             description="|start|"] ; # stretch
         check_replication_status [label="Are replicas\ncurrent enough?",
+            color=lightgreen,
             numbered=20,
             description="|check_replication_status|"] ;
         create_DB_scripts [label="Write DB Scripts",
+            color=lightgreen,
             numbered=30,
             description="|create_DB_scripts|"] ;
         create_ops_scripts [label="Write TCW Scripts",
+            color=white,
             numbered=32,
             description="|create_ops_scripts|"] ;
         log_graphite_data [label="Graph Deltas",
+            color=white,
             numbered=50,
+            color=lightgreen,
             description="|log_graphite_data|"] ; # stretch
         monitor [label="Look for R/O issues",
+            color=white,
             numbered=60,
             description="|monitor|"] ;
         disable_db_maintenance [label="Disable DB Maint",
+            color=white,
             numbered=65,
             description="|disable_db_maintenance|"] ;
 
         close_trees [label="Close Trees",
+            color=white,
             numbered=80,
             description="|close_trees|"] ;
         verify_trees_closed [label="Check Tree Status",
+            color=white,
             numbered=85,
             description="|verify_trees_closed|"] ;
         stop_all_writers [label="Stop BB DB\nwriters",
+            color=white,
             numbered=90,
             description="|stop_all_writers|"] ;
         verify_empty_command_queues [label="Empty Queues",
+            color=white,
             numbered=91,
             description="|verify_empty_command_queues|"] ;
         verify_replication [label="Verify Replication\ncaught up",
+            color=white,
             numbered=110,
             description="|verify_replication|"] ;
         okay_on_innodb [label="Is\nInnoDB\nGood?",
+            color=white,
             numbered=150,
             description="|okay_on_innodb|", shape=diamond] ;
         restart_all_writers [label="Start BB DB\n writers",
+            color=white,
             numbered=170,
             description="|restart_all_writers|"] ;
         monitor_production [label="Monitor RelEng\nSystems",
+            color=white,
             numbered=180,
             description="|monitor_production|"] ;
         declare_victory [label="Final 'Go for\nProduction'",
+            color=white,
             numbered=190,
             description="|declare_victory|"] ;
         manually_run_db_maintenance [label="Run DB Maintenance",
+            color=white,
             numbered=220,
             description="|manually_run_db_maintenance|"];
         reenable_db_maintenance [label="Renable DB Maint",
+            color=white,
             numbered=230,
             description="|reenable_db_maintenance|"] ;
     }
@@ -215,7 +250,6 @@ Legend:
                 under supervision, in case changes are needed. Time TBD.
 .. |reenable_db_maintenance| replace:: Re-enable the cronjob for the
                 weekly maintenance.
-
 
 .. rubric:: Footnotes
 
