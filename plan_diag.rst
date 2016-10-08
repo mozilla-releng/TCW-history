@@ -94,7 +94,7 @@ Links:
             numbered=130,
             description="|failover_to_innodb|"] ;
         monitor_rw_db [label="Monitor R/W Node",
-            color=white,
+            color=orchid,
             numbered=140,
             description="|monitor_rw_db|"] ;
         rollback_to_myisam_for_rw [label="Rollback to MyISAM",
@@ -155,7 +155,7 @@ Links:
             numbered=110,
             description="|verify_replication|"] ;
         okay_on_innodb [label="Is\nInnoDB\nGood?",
-            color=white,
+            color=orchid,
             numbered=150,
             description="|okay_on_innodb|", shape=diamond] ;
         restart_all_writers [label="Start BB DB\n writers",
