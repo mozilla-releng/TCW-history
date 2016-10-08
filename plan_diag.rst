@@ -2,7 +2,7 @@
 InnoDB Cutover Plan
 ===================
 
-*Last updated: |today|*
+*Last updated:* |today|
 
 Legend:
 
