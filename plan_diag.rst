@@ -159,11 +159,11 @@ Links:
             numbered=150,
             description="|okay_on_innodb|", shape=diamond] ;
         restart_all_writers [label="Start BB DB\n writers",
-            color=white,
+            color=lightgreen,
             numbered=170,
             description="|restart_all_writers| [#workers]_"] ;
         monitor_production [label="Monitor RelEng\nSystems",
-            color=white,
+            color=orchid,
             numbered=180,
             description="|monitor_production|"] ;
         declare_victory [label="Final 'Go for\nProduction'",
