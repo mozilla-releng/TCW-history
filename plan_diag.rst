@@ -154,7 +154,7 @@ Links:
             color=lightgreen,
             numbered=110,
             description="|verify_replication|"] ;
-        okay_on_innodb [label="Is\nInnoDB\nGood?", height=60, width=180,
+        okay_on_innodb [label="Is\nInnoDB\nGood?",
             color=lightgreen,
             numbered=150,
             description="|okay_on_innodb|", shape=diamond] ;

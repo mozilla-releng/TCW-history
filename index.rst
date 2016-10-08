@@ -6,9 +6,10 @@
 Welcome to InnoDB Cutover Plan's documentation!
 ===============================================
 
+Contents:
+
 .. toctree::
    :maxdepth: 2
-   :hidden:
 
    plan_diag.rst
 
