@@ -62,11 +62,11 @@ Links:
     lane MOC {
         label = "MOC" ;
         tcw_start [label="TCW Start",
-            color=white,
+            color=lightgreen,
             numbered=70,
             description="|tcw_start|"] ;
         tcw_pre_db [label="TCW before\nDB work",
-            color=white,
+            color=orchid,
             numbered=100,
             description="|tcw_pre_db|"] ;
         tcw_post_db [label="TCW after\nDB work",
@@ -122,9 +122,8 @@ Links:
             numbered=32,
             description="|create_ops_scripts|"] ;
         log_graphite_data [label="Graph Deltas",
-            color=white,
-            numbered=50,
             color=lightgreen,
+            numbered=50,
             description="|log_graphite_data|"] ; # stretch
         monitor [label="Look for R/O issues",
             color=lightgreen,
@@ -136,11 +135,11 @@ Links:
             description="|disable_db_maintenance|"] ;
 
         close_trees [label="Close Trees",
-            color=white,
+            color=lightgreen,
             numbered=80,
             description="|close_trees|"] ;
         verify_trees_closed [label="Check Tree Status",
-            color=white,
+            color=lightgreen,
             numbered=85,
             description="|verify_trees_closed|"] ;
         stop_all_writers [label="Stop BB DB\nwriters",
