@@ -1,16 +1,18 @@
-..
-    Color code for chart:
-        - white -- not started yet
-        - lightgreen -- done
-        - orchid -- in progress
-        - maroon -- cancelled
-
 ===================
 InnoDB Cutover Plan
 ===================
 
+*Last updated: |today|*
+
 Legend:
 
+Boxes:
+    - white boxes are not started yet
+    - lightgreen boxes are done
+    - orchid boxes are in progress
+    - maroon boxes are optional items cancelled
+
+Links:
     - blue links are TCW work not related to InnoDB cutover
     - red links are "sad path" - we hope not to use them at a decision
       point
@@ -116,7 +118,7 @@ Legend:
             numbered=30,
             description="|create_DB_scripts|"] ;
         create_ops_scripts [label="Write TCW Scripts",
-            color=white,
+            color=maroon,
             numbered=32,
             description="|create_ops_scripts|"] ;
         log_graphite_data [label="Graph Deltas",
@@ -125,11 +127,11 @@ Legend:
             color=lightgreen,
             description="|log_graphite_data|"] ; # stretch
         monitor [label="Look for R/O issues",
-            color=white,
+            color=lightgreen,
             numbered=60,
             description="|monitor|"] ;
         disable_db_maintenance [label="Disable DB Maint",
-            color=white,
+            color=lightgreen,
             numbered=65,
             description="|disable_db_maintenance|"] ;
 
@@ -160,7 +162,7 @@ Legend:
         restart_all_writers [label="Start BB DB\n writers",
             color=white,
             numbered=170,
-            description="|restart_all_writers|"] ;
+            description="|restart_all_writers| [#workers]_"] ;
         monitor_production [label="Monitor RelEng\nSystems",
             color=white,
             numbered=180,
@@ -239,7 +241,7 @@ Legend:
                 the buildbot databases. This is done in 3 steps:
                 a) trial load (try builds & tests on existing builds);
                 b) full load; and c) restart workers to force reconnect
-                if required. [#workers]
+                if required.
 .. |monitor_production| replace:: Continue initial monitoring that
                 things "look okay". 
 .. |declare_victory| replace:: Formal acceptance of InnoDB in
