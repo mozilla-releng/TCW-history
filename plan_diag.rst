@@ -66,11 +66,11 @@ Links:
             numbered=70,
             description="|tcw_start|"] ;
         tcw_pre_db [label="TCW before\nDB work",
-            color=orchid,
+            color=lightgreen,
             numbered=100,
             description="|tcw_pre_db|"] ;
         tcw_post_db [label="TCW after\nDB work",
-            color=white,
+            color=orchid,
             numbered=200,
             description="|tcw_post_db|"] ;
         tcw_end [label="TCW End",
@@ -94,11 +94,11 @@ Links:
             numbered=130,
             description="|failover_to_innodb|"] ;
         monitor_rw_db [label="Monitor R/W Node",
-            color=orchid,
+            color=lightgreen,
             numbered=140,
             description="|monitor_rw_db|"] ;
         rollback_to_myisam_for_rw [label="Rollback to MyISAM",
-            color=white,
+            color=maroon,
             numbered=160,
             description="|rollback_to_myisam_for_rw|"] ; # original master
     }
@@ -154,8 +154,8 @@ Links:
             color=lightgreen,
             numbered=110,
             description="|verify_replication|"] ;
-        okay_on_innodb [label="Is\nInnoDB\nGood?",
-            color=orchid,
+        okay_on_innodb [label="Is\nInnoDB\nGood?", height=60, width=180,
+            color=lightgreen,
             numbered=150,
             description="|okay_on_innodb|", shape=diamond] ;
         restart_all_writers [label="Start BB DB\n writers",
@@ -163,11 +163,11 @@ Links:
             numbered=170,
             description="|restart_all_writers| [#workers]_"] ;
         monitor_production [label="Monitor RelEng\nSystems",
-            color=orchid,
+            color=lightgreen,
             numbered=180,
             description="|monitor_production|"] ;
         declare_victory [label="Final 'Go for\nProduction'",
-            color=white,
+            color=lightgreen,
             numbered=190,
             description="|declare_victory|"] ;
         manually_run_db_maintenance [label="Run DB Maintenance",
