@@ -30,7 +30,7 @@ Links:
     start -> check_replication_status -> cutover_ro_instance ;
     cutover_ro_instance -> monitor -> disable_db_maintenance ->
         close_trees ;
-    disable_db_maintenance ; 
+    disable_db_maintenance ;
 
     close_trees ;
     tcw_start -> verify_trees_closed -> stop_all_writers ;
@@ -47,7 +47,7 @@ Links:
     monitor_production -> declare_victory ;
     declare_victory -> tcw_post_db ;
     tcw_post_db -> tcw_end [style=dashed, color=blue] ;
-    manually_run_db_maintenance -> reenable_db_maintenance ; 
+    manually_run_db_maintenance -> reenable_db_maintenance ;
 
     # timing dependancies - show as hidden edges to force layout
     create_ops_scripts -> tcw_start [style=none]
@@ -86,11 +86,11 @@ Links:
             numbered=40,
             description="|cutover_ro_instance|"] ;
         apply_all_patches_and_reboot [label="Update Nodes",
-            color=white,
+            color=lightgreen,
             numbered=120,
             description="|apply_all_patches_and_reboot|"] ;
         failover_to_innodb [label="Switch R/W VIP\nto InnoDB",
-            color=white,
+            color=lightgreen,
             numbered=130,
             description="|failover_to_innodb|"] ;
         monitor_rw_db [label="Monitor R/W Node",
@@ -242,7 +242,7 @@ Links:
                 b) full load; and c) restart workers to force reconnect
                 if required.
 .. |monitor_production| replace:: Continue initial monitoring that
-                things "look okay". 
+                things "look okay".
 .. |declare_victory| replace:: Formal acceptance of InnoDB in
                 production. (Corollary is last chance to ask for
                 rollback. That path not shown, but "obvious".)
