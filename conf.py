@@ -31,10 +31,15 @@ import shlex
 # ones.
 extensions = [
     'sphinxcontrib.actdiag',
+    'sphinx.ext.extlinks',
 ]
 
 actdiag_html_image_format = 'SVG'
 
+# extra commands
+extlinks = {
+    'bmo': ('https://bugzilla.mozilla.org/show_bug.cgi?id=%s', 'bug '),
+    }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

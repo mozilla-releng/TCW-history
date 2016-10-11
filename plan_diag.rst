@@ -58,6 +58,7 @@ Links:
     stop_all_writers -> tcw_pre_db [style=none] ;
     tcw_pre_db -> verify_replication [style=none] ;
     tcw_end -> manually_run_db_maintenance [style=none] ;
+    tcw_end -> fix_bustages [style=none] ;
 
     lane MOC {
         label = "MOC" ;
@@ -70,11 +71,11 @@ Links:
             numbered=100,
             description="|tcw_pre_db|"] ;
         tcw_post_db [label="TCW after\nDB work",
-            color=orchid,
+            color=lightgreen,
             numbered=200,
             description="|tcw_post_db|"] ;
         tcw_end [label="TCW End",
-            color=white,
+            color=lightgreen,
             numbered=210,
             description="|tcw_end|"] ;
     }
@@ -171,13 +172,17 @@ Links:
             numbered=190,
             description="|declare_victory|"] ;
         manually_run_db_maintenance [label="Run DB Maintenance",
-            color=white,
+            color=lightgreen,
             numbered=220,
-            description="|manually_run_db_maintenance|"];
+            description="|manually_run_db_maintenance| :bmo:`1308589`"];
         reenable_db_maintenance [label="Renable DB Maint",
-            color=white,
+            color=lightgreen,
             numbered=230,
-            description="|reenable_db_maintenance|"] ;
+            description="|reenable_db_maintenance| :bmo:`1308589`"] ;
+        fix_bustages [label="Fix Bugs",
+            color=orchid,
+            numbered=240,
+            description="|fix_bustages| :bmo:`1308818`"] ;
     }
 
 
@@ -251,6 +256,8 @@ Links:
                 under supervision, in case changes are needed. Time TBD.
 .. |reenable_db_maintenance| replace:: Re-enable the cronjob for the
                 weekly maintenance.
+.. |fix_bustages| replace:: MyISAM handles 'too big' key lookup by
+                truncation, InnoDB fails query.
 
 .. rubric:: Footnotes
 
