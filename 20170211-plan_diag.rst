@@ -1,0 +1,81 @@
+====================
+2017-02-11 TCW
+====================
+
+.. actdiag:: 
+
+    actdiag {
+        # Communication Points
+        # Releng -> MOC
+        give_ok_to_start_db_it_work
+            -> start_db_it_work ;
+        # MOC -> Releng
+        give_ok_to_start_releng_bringup
+            -> start_selfserve_agents ;
+
+        # main TCW flow
+        tcw_start
+            -> close_trees
+            -> start_non_db_it_work
+            -> start_db_it_work
+            -> it_done_with_db
+            -> give_ok_to_start_releng_bringup
+            -> final_check
+        -> tcw_end;
+
+        # RelEng shutdown
+        close_trees
+            -> stop_bb_masters
+            -> stop_buildapi
+            -> stop_selfserve_agents
+            -> verify_no_db_connections
+            -> give_ok_to_start_db_it_work ;
+
+        # RelEng bring up
+        give_ok_to_start_releng_bringup
+            -> start_selfserve_agents
+            -> start_buildapi
+            -> start_bb_masters
+            -> monitor_production 
+            -> final_check ;
+
+        # timing dependancies - show as hidden edges to force layout
+        #create_scripts -> tcw_start [style=none] ;
+
+        lane MOC {
+            label = "MOC" ;
+            tcw_start [label="TCW Start" ];
+            tcw_end [label="TCW End" ]; 
+            give_ok_to_start_db_it_work ;
+            give_ok_to_start_releng_bringup ;
+        }
+
+        lane IT {
+            label = "IT" ;
+            start_non_db_it_work;
+            start_db_it_work ;
+            it_done_with_db ;
+        }
+
+        lane releng {
+            label = "RelEng";
+            close_trees [label="Close Trees" ]; 
+
+            stop_bb_masters ;
+            stop_buildapi ;
+            stop_selfserve_agents ;
+            verify_no_db_connections ;
+
+            start_selfserve_agents ;
+            start_buildapi ;
+            start_bb_masters  ;
+
+            monitor_production [label="Monitor RelEng\nSystems" ]; 
+        }
+    }
+
+.. |tcw_start| replace:: Start of TCW
+.. |tcw_end| replace:: End of TCW
+.. |close_trees| replace:: Normal tree closure procedure for TCW.
+.. |monitor_production| replace:: Continue initial monitoring that
+                things "look okay". 

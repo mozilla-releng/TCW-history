@@ -49,7 +49,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = '20170211-plan_diag'
 
 # General information about the project.
 project = u'2017-02-11 TCW Plan'
