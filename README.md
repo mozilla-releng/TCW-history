@@ -12,24 +12,24 @@ An overview of the RelEng activity for the TCW.
 
 ## Issue
 
-Issue #15 contains the checklist for the TCW steps
+Issue [#15](https://github.com/mozilla-releng/TCW-history/issues/15) contains the checklist for the TCW steps
 
 ## Code
-None here, but recent updates to mozilla/build-ansible@HEAD support this
+None here, but recent updates to https://github.com/mozilla/build-ansible support this
 TCW.
 
 ## Docs
 20170911-plan_diag.rst 
 
-   A diagram of the plan, uses actdiag extension to Sphinx
+> A diagram of the plan, uses actdiag extension to Sphinx
 
 Makefile conf.py
 
-   Sphinx boiler plate
+> Sphinx boiler plate
 
 rtfd-requirements.txt
 
-   RTFD boiler plate
+> RTFD boiler plate
 
 ## What's not here:
 
