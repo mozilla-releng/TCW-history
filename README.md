@@ -14,6 +14,8 @@ An overview of the RelEng activity for the TCW.
 
 Issue [#15](https://github.com/mozilla-releng/TCW-history/issues/15) contains the checklist for the TCW steps
 
+![Coordination Diagram](https://cdn.rawgit.com/hwine/TCW-history/68e0b736e8f129f4c641239027bb4000f41f4edb/tcw_diag.svg)
+
 ## Code
 None here, but recent updates to https://github.com/mozilla/build-ansible support this
 TCW.
